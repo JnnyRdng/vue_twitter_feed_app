@@ -1,6 +1,23 @@
 <template>
   <div>
     <h1>Not Twitter</h1>
+    <form v-on:submit.prevent="addNewTweet">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" v-model="newTweet.name" />
+      </div>
+      <div>
+        <label for="handle">Handle:</label>
+        <input type="text" id="handle" v-model="newTweet.handle" />
+      </div>
+      <div>
+        <label for="tweet">Tweet:</label>
+        <input type="text" id="tweet" v-model="newTweet.tweet" />
+      </div>
+      <div>
+        <input type="submit" value="Tweet!" />
+      </div>
+    </form>
     <p>{{totalLikes}}</p>
     <ul>
       <tweet-list-item v-for="(tweet, index) in tweets" :key="index" :tweet="tweet"></tweet-list-item>
@@ -40,6 +57,14 @@ export default {
           likes: 18,
         },
       ],
+      newTweet: {
+        id: 4,
+        name: "",
+        handle: "",
+        img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
+        tweet: "",
+        likes: 0,
+      },
     };
   },
   components: {
@@ -48,6 +73,22 @@ export default {
   computed: {
     totalLikes: function () {
       return this.tweets.reduce((total, tweet) => total + tweet.likes, 0);
+    },
+    nextId: function () {
+      return this.tweets.length + 1;
+    },
+  },
+  methods: {
+    addNewTweet: function () {
+      this.tweets.push(this.newTweet);
+      this.newTweet = {
+        id: this.nextId,
+        name: "",
+        handle: "",
+        img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
+        tweet: "",
+        likes: 0,
+      };
     },
   },
 };
