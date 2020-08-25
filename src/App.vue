@@ -18,9 +18,10 @@
         <input type="submit" value="Tweet!" />
       </div>
     </form>
-    <p>{{totalLikes}}</p>
+    <p>Total likes in feed: {{totalLikes}}</p>
+    <input type="button" value="Filter tweets" v-on:click="filterByLikes" />
     <ul>
-      <tweet-list-item v-for="(tweet, index) in tweets" :key="index" :tweet="tweet"></tweet-list-item>
+      <tweet-list-item v-for="(tweet, index) in filteredTweets" :key="index" :tweet="tweet"></tweet-list-item>
     </ul>
   </div>
 </template>
@@ -60,11 +61,12 @@ export default {
       newTweet: {
         id: 4,
         name: "",
-        handle: "",
+        handle: "@",
         img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
         tweet: "",
         likes: 0,
       },
+      filterValue: 0,
     };
   },
   components: {
@@ -77,6 +79,9 @@ export default {
     nextId: function () {
       return this.tweets.length + 1;
     },
+    filteredTweets: function () {
+      return this.tweets.filter((tweet) => tweet.likes >= this.filterValue);
+    },
   },
   methods: {
     addNewTweet: function () {
@@ -84,11 +89,14 @@ export default {
       this.newTweet = {
         id: this.nextId,
         name: "",
-        handle: "",
+        handle: "@",
         img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
         tweet: "",
         likes: 0,
       };
+    },
+    filterByLikes: function () {
+      this.filterValue = this.filterValue === 0 ? 10 : 0;
     },
   },
 };
