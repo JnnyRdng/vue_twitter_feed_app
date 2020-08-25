@@ -54,4 +54,10 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: Mukta, sans-serif;
+}
+ul {
+  padding: 0px;
+}
 </style>
