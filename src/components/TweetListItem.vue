@@ -1,7 +1,12 @@
-<template></template>
+<template>
+  <li>{{tweet.handle}}</li>
+</template>
 
 <script>
-export default {};
+export default {
+  name: "TweetListItem",
+  props: ["tweet"],
+};
 </script>
 
 <style>
