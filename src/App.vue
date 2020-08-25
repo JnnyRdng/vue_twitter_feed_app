@@ -28,40 +28,41 @@
 
 <script>
 import TweetListItem from "./components/TweetListItem.vue";
+import Tweet from "./models/Tweet.js";
 export default {
   name: "App",
   data() {
     return {
       tweets: [
-        {
+        new Tweet({
           id: 1,
           name: "James",
-          handle: "@jokerjames",
+          handle: "jokerjames",
           img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
           tweet: "If you don't succeed, dust yourself off and try again.",
           likes: 10,
-        },
-        {
+        }),
+        new Tweet({
           id: 2,
           name: "Fatima",
-          handle: "@fantasticfatima",
+          handle: "fantasticfatima",
           img: "https://semantic-ui.com/images/avatar2/large/molly.png",
           tweet: "Better late than never but never late is better.",
           likes: 12,
-        },
-        {
+        }),
+        new Tweet({
           id: 3,
           name: "Xin",
-          handle: "@xeroxin",
+          handle: "xeroxin",
           img: "https://semantic-ui.com/images/avatar2/large/elyse.png",
           tweet: "Beauty in the struggle, ugliness in the success.",
           likes: 18,
-        },
+        }),
       ],
       newTweet: {
         id: 4,
         name: "",
-        handle: "@",
+        handle: "",
         img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
         tweet: "",
         likes: 0,
@@ -85,11 +86,11 @@ export default {
   },
   methods: {
     addNewTweet: function () {
-      this.tweets.push(this.newTweet);
+      this.tweets.push(new Tweet(this.newTweet));
       this.newTweet = {
         id: this.nextId,
         name: "",
-        handle: "@",
+        handle: "",
         img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
         tweet: "",
         likes: 0,
@@ -105,6 +106,11 @@ export default {
 <style>
 body {
   font-family: Mukta, sans-serif;
+}
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 ul {
   padding: 0px;

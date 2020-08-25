@@ -32,10 +32,10 @@ export default {
   },
   methods: {
     addLike: function () {
-      this.tweet.likes++;
+      this.tweet.addLike();
     },
     removeLike: function () {
-      this.tweet.likes--;
+      this.tweet.removeLike();
     },
   },
 };
@@ -72,10 +72,11 @@ header {
 }
 .handle {
   opacity: 0.6;
+  font-style: italic;
 }
 footer {
   display: grid;
-  grid-template-columns: 2fr 4fr 1fr;
+  grid-template-columns: 2fr 6fr 1fr;
 }
 .like-button {
   background-color: #131724;
@@ -84,6 +85,7 @@ footer {
   margin-left: 5px;
   border-radius: 10px;
   justify-self: start;
+  width: 40px;
 }
 .like-button:hover {
   background-color: #2b3452;
